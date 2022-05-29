@@ -42,20 +42,11 @@ export default {
     Cell,
     CustomButton,
   },
+  props: {
+    waterMelons: Array
+  },
   data() {
     return {
-      waterMelons: [
-        { id: 1, m: 3.5, status: "ripe" },
-        { id: 2, m: 3.6, status: "unripe" },
-        { id: 3, m: 3.7, status: "collected" },
-        { id: 4, m: 3.3, status: "ripe" },
-        { id: 5, m: 3.0, status: "ripe" },
-        { id: 6, m: 3.9, status: "ripe" },
-        { id: 7, m: 3.4, status: "ripe" },
-        { id: 8, m: 3.8, status: "unripe" },
-        { id: 9, m: 3.7, status: "collected" },
-        { id: 10, m: 3.3, status: "ripe" },
-      ],
       rows: 2,
       cols: 5,
       selectedItems: new Set(),

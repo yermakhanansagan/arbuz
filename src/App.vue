@@ -5,7 +5,7 @@
       form.pickedMelons.length > 0 ? "Изменить выбор" : "Выбрать арбузы"
     }}</CustomButton>
     <div v-if="isSelecting" class="picker">
-      <PlacePicker @melonsPicked="melonsPicked" />
+      <PlacePicker @melonsPicked="melonsPicked" :waterMelons="waterMelons"/>
     </div>
     <div v-if="showItems" class="items">
       <p>Список выбранных арбузов</p>
@@ -69,6 +69,18 @@ export default {
       minDate: "",
       maxDate: "",
       errors: new Map(),
+      waterMelons: [
+        { id: 1, m: 3.5, status: "ripe" },
+        { id: 2, m: 3.6, status: "unripe" },
+        { id: 3, m: 3.7, status: "collected" },
+        { id: 4, m: 3.3, status: "ripe" },
+        { id: 5, m: 3.0, status: "ripe" },
+        { id: 6, m: 3.9, status: "ripe" },
+        { id: 7, m: 3.4, status: "ripe" },
+        { id: 8, m: 3.8, status: "unripe" },
+        { id: 9, m: 3.7, status: "collected" },
+        { id: 10, m: 3.3, status: "ripe" },
+      ],
     };
   },
   methods: {
