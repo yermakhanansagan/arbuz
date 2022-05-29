@@ -37,7 +37,12 @@
     <CustomButton style="margin-top: 10px" @click="sendOrder"
       >Заказать</CustomButton
     >
+    <div class="accepted" v-if="accepted">
+      <p>Вы заказали</p>
+      {{ form }}
+      /></div>
   </form>
+  
 </template>
 
 <script>
@@ -81,6 +86,7 @@ export default {
         { id: 9, m: 3.7, status: "collected" },
         { id: 10, m: 3.3, status: "ripe" },
       ],
+      accepted: false
     };
   },
   methods: {
@@ -92,6 +98,7 @@ export default {
       melons.forEach((v) => this.form.pickedMelons.push(v));
       this.showItems = true;
       this.isSelecting = false;
+      this.errors.delete("melons")
     },
     getMinDate(date = new Date()) {
       date.setTime(date.getTime() + 8 * 60 * 60 * 1000);
@@ -104,6 +111,7 @@ export default {
     sendOrder() {
       if (this.checkForm()) {
         console.log(this.form);
+        this.accepted = true
       }
     },
     checkForm() {
@@ -115,11 +123,14 @@ export default {
       ) {
         return true;
       }
-      if (!this.form.phone || isNaN(this.form.phone)) {
+      if (this.form.phone.length == 0) {
         this.errors.set("phone", "Введите корректный номер телефона");
       } else {
+        if (typeof this.form.phone === 'number'){
+          this.errors.set("phone", "Введите корректный номер телефона");
+        }
         this.errors.delete("phone");
-      }
+      }this.errors.delete("phone");
       if (!this.form.adress) {
         this.errors.set("adress", "Введите адрес");
       } else {
@@ -167,5 +178,8 @@ form {
 .error {
   margin-top: 10px;
   color: red;
+}
+.accepted {
+  margin-top: 10px;
 }
 </style>
